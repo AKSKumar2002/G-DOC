@@ -30,11 +30,12 @@ a {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 1rem 1rem;
+  padding: 1rem;
   background: rgba(255,255,255,0.06);
   border-radius: 12px;
   margin: 1rem;
   align-items: center;
+  gap: 10px;
 }
 
 .logo {
@@ -45,28 +46,21 @@ a {
 
 .nav-actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-dropbtn,
 .team-selector,
 .month-selector {
-  padding: 10px;
+  padding: 10px 15px;
   border-radius: 8px;
   border: none;
   font-weight: bold;
   background: #1e293b;
   color: white;
   cursor: pointer;
-}
-
-.contact-link {
-  background: #22c55e;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-weight: 600;
 }
 
 .nav-dropdown {
@@ -93,26 +87,15 @@ a {
   display: block;
 }
 
-/* COMPACT NAVBAR FOR MOBILE */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0.5rem 1rem;
-    gap: 5px;
-  }
-  .nav-actions {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .logo {
-    font-size: 1.2rem;
-  }
-  .nav-dropbtn, .team-selector, .contact-link {
-    padding: 8px;
-    font-size: 0.9rem;
-  }
+.contact-link {
+  background: #1e293b;
+  padding: 7px 15px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  font-weight: 600;
 }
 
-/* MAIN CONTENT */
+/* DASHBOARD */
 .dashboard {
   max-width: 1200px;
   margin: auto;
@@ -124,6 +107,7 @@ a {
 h1 {
   text-align: center;
   color: #fbbf24;
+  margin-bottom: 0.5rem;
 }
 
 .subheading {
@@ -164,8 +148,9 @@ h1 {
 }
 
 .stack-heading {
-  text-align: center;
   font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
   margin-bottom: 10px;
 }
 
@@ -204,6 +189,7 @@ h1 {
   100% { transform: translateX(-50%); }
 }
 
+/* TABLE */
 .table-wrapper {
   overflow-x: auto;
 }
@@ -234,6 +220,7 @@ tr:hover {
   background: rgba(255,255,255,0.1);
 }
 
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
@@ -273,9 +260,22 @@ tr:hover {
   margin-bottom: 10px;
 }
 
+/* FOOTER */
 .footer {
   text-align: center;
   color: #cbd5e1;
   padding: 20px;
   margin-top: 40px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .navbar, .nav-actions, .search-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stack-cards {
+    animation-duration: 20s;
+  }
 }
