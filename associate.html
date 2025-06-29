@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>G-DOC Rankings</title>
+  <title>G-DOC - Associates</title>
   <link rel="stylesheet" href="/css/rank.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
-<body>
-  <div class="background-glow"></div>
+<body class="associate-theme">
+  <div class="background-glow-alt"></div>
 
   <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="logo">🌐 G-DOC</div>
+    <div class="logo">👥 Associates</div>
     <div class="dropdown">
       <button class="dropbtn">Select Role ▼</button>
       <div class="dropdown-content">
-        <a href="associate.html">Associates</a>
+        <a href="index.html">Top 10 Overall</a>
         <a href="manager.html">Managers</a>
         <a href="hr.html">HR</a>
         <a href="admember.html">AD Members</a>
@@ -25,9 +25,9 @@
     </div>
   </nav>
 
-  <div class="dashboard" data-aos="fade-up">
-    <h1>🏆 G-DOC Achievers</h1>
-    <p class="subheading">Live performance rankings synced with G-DOC Team</p>
+  <main class="dashboard" data-aos="fade-up">
+    <h1>👔 Associate Rankings</h1>
+    <p class="subheading">Live performance rankings from Associate Google Sheet</p>
 
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Search by Employee ID..." />
@@ -48,7 +48,7 @@
         <tbody></tbody>
       </table>
     </div>
-  </div>
+  </main>
 
   <!-- MODAL -->
   <div id="modal" class="modal">
@@ -64,7 +64,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="/js/rank.js"></script>
+  <script src="/js/associate.js"></script>
   <script>AOS.init({ duration: 1000, once: true });</script>
 </body>
 </html>

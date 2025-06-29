@@ -1,4 +1,4 @@
-const sheetURL = 'https://api.sheetbest.com/sheets/36d7b7c7-7c44-412e-baa3-89a9deaede05';
+const sheetURL = 'https://api.sheetbest.com/sheets/YOUR_ASSOCIATE_SHEET_URL'; // Replace this with your actual sheet URL
 let allData = [];
 
 function openModal(employee) {
@@ -27,15 +27,11 @@ fetch(sheetURL)
   .then(response => response.json())
   .then(data => {
     allData = data;
-
-    const topTen = [...data]
-      .sort((a, b) => parseFloat(b.Score) - parseFloat(a.Score))
-      .slice(0, 10);
-
+    const sorted = [...data].sort((a, b) => parseFloat(b.Score) - parseFloat(a.Score));
     const tableBody = document.querySelector("#employeeTable tbody");
     tableBody.innerHTML = "";
 
-    topTen.forEach((employee, index) => {
+    sorted.forEach((employee, index) => {
       const row = document.createElement("tr");
       row.innerHTML = `
         <td>${employee.Rank}</td>
@@ -49,7 +45,7 @@ fetch(sheetURL)
       setTimeout(() => {
         row.style.opacity = 1;
         row.style.transition = 'opacity 0.6s ease';
-      }, index * 100);
+      }, index * 80);
       tableBody.appendChild(row);
     });
   })
