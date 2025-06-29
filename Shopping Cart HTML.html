@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmPick - Shopping Cart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #eef7ee;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    .products-container,
+    .cart-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 220px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product-card button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .product-card button:hover {
+      background-color: #218838;
+    }
+
+    .cart-container {
+      flex-direction: column;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .cart-actions input {
+      width: 40px;
+      text-align: center;
+    }
+
+    .cart-actions button {
+      margin-left: 10px;
+      background: red;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .cart-summary {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: right;
+    }
+
+    .cart-summary button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .cart-summary button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="FarmPick Logo">
+    </div>
+    <h1>FarmPick Shopping</h1>
+  </header>
+
+  <section class="products-container" id="productList">
+    <!-- Products will be rendered here -->
+  </section>
+
+  <section class="cart-container" id="cart">
+    <!-- Cart items will be rendered here -->
+  </section>
+
+  <div class="cart-summary" id="summary">
+    <p><strong>Total Items:</strong> <span id="totalItems">0</span></p>
+    <p><strong>Total Price:</strong> Rs. <span id="totalPrice">0</span></p>
+    <button onclick="checkout()">Proceed to Checkout</button>
+  </div>
+
+  <script>
+    const products = [
+      { id: 1, name: "Tomato", price: 17, image: "images/Tomato11.jpg" },
+      { id: 2, name: "Onion", price: 22, image: "images/onion.jpg" },
+      { id: 3, name: "Carrot", price: 30, image: "images/carrot.jpg" }
+    ];
+
+    const cart = {};
+
+    function renderProducts() {
+      const productList = document.getElementById("productList");
+      products.forEach(product => {
+        const el = document.createElement("div");
+        el.className = "product-card";
+        el.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>Rs. ${product.price}</p>
+          <button onclick='addToCart(${JSON.stringify(product.id)})'>Add to Cart</button>
+        `;
+        productList.appendChild(el);
+      });
+    }
+
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!cart[productId]) cart[productId] = { ...product, quantity: 0 };
+      cart[productId].quantity++;
+      renderCart();
+    }
+
+    function removeFromCart(productId) {
+      delete cart[productId];
+      renderCart();
+    }
+
+    function updateQuantity(productId, newQty) {
+      if (newQty < 1) return;
+      cart[productId].quantity = newQty;
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartContainer = document.getElementById("cart");
+      cartContainer.innerHTML = "";
+      let totalPrice = 0, totalItems = 0;
+      Object.values(cart).forEach(item => {
+        totalPrice += item.price * item.quantity;
+        totalItems += item.quantity;
+        const el = document.createElement("div");
+        el.className = "cart-item";
+        el.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <span>${item.name}</span>
+          <div class="cart-actions">
+            Qty: <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
+            <button onclick="removeFromCart(${item.id})">Remove</button>
+          </div>
+        `;
+        cartContainer.appendChild(el);
+      });
+      document.getElementById("totalPrice").innerText = totalPrice;
+      document.getElementById("totalItems").innerText = totalItems;
+    }
+
+    function checkout() {
+      const orderDetails = {
+        items: Object.values(cart).map(i => `${i.name} x${i.quantity}`).join(", "),
+        total: document.getElementById("totalPrice").innerText
+      };
+      fetch("YOUR_GOOGLE_SCRIPT_URL", {
+        method: "POST",
+        body: JSON.stringify(orderDetails)
+      }).then(() => {
+        alert("Order submitted! Redirecting to payment...");
+        window.location.href = "payment.html";
+      });
+    }
+
+    renderProducts();
+  </script>
+</body>
+
+</html>
