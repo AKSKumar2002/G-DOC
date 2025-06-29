@@ -12,7 +12,7 @@
     }
 
     html, body {
-      height: 100%;
+      min-height: 100vh;
       width: 100%;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #ffffff, #ffffff);
@@ -28,14 +28,16 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 100%;
+      gap: 20px;
       padding: 20px;
+      width: 100%;
+      max-width: 90%;
     }
 
     .logo-img {
       width: 120px;
+      max-width: 100%;
       height: auto;
-      margin-bottom: 30px;
       animation: fadeLogo 1.5s ease-in-out;
     }
 
@@ -46,13 +48,11 @@
       border-top: 6px solid #009cf7;
       border-radius: 50%;
       animation: spin 1.2s linear infinite;
-      margin-bottom: 20px;
     }
 
     .powered-by {
       font-size: 1rem;
       color: #000000cc;
-      margin-top: 10px;
       opacity: 0;
       filter: blur(10px);
       transform: scale(0.5);
@@ -77,11 +77,9 @@
       }
     }
 
-    /* Mobile Responsive Tweaks */
     @media (max-width: 480px) {
       .logo-img {
         width: 100px;
-        margin-bottom: 20px;
       }
       .spinner {
         width: 50px;
@@ -104,7 +102,7 @@
 
   <script>
     setTimeout(() => {
-      window.location.href = "top.html"; // redirect after 5s
+      window.location.href = "top.html";
     }, 5000);
   </script>
 
