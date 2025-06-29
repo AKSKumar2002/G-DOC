@@ -3,7 +3,8 @@ let allData = [];
 
 function openModal(employee) {
   document.getElementById("modalName").textContent = employee.Name;
-  document.getElementById("modalDept").textContent = `Department: ${employee.Department}`;
+  document.getElementById("modalEmployeeID").textContent = `EmployeeID: ${employee.EmployeeID}`;
+  document.getElementById("modalDept").textContent = `Team: ${employee.Team}`;
   document.getElementById("modalEmail").textContent = `Email: ${employee.Email}`;
   document.getElementById("modalPhone").textContent = `Phone: ${employee.Phone}`;
   document.getElementById("modalPosition").textContent = `Position: ${employee.Position}`;
@@ -60,7 +61,7 @@ top5.forEach(employee => {
     <td>${employee.Resolution}</td>
     <td>${employee.CSS}</td>
     <td>${employee.DSAT}</td>
-    <td>${employee.Department}</td>
+    <td>${employee.Team}</td>
   `;
   row.onclick = () => openModal(employee);
   row.style.opacity = 0;
