@@ -1,10 +1,9 @@
-const sheetURL = 'https://sheetdb.io/api/v1/bcd04a8frutnp'; // Replace this with your actual sheet URL
+const sheetURL = 'https://api.sheetbest.com/sheets/YOUR_ASSOCIATE_SHEET_URL'; // Replace this with your actual sheet URL
 let allData = [];
 
 function openModal(employee) {
   document.getElementById("modalName").textContent = employee.Name;
-  document.getElementById("modalEmployeeID").textContent = `EmployeeID: ${employee.EmployeeID}`;
-  document.getElementById("modalDept").textContent = `Team: ${employee.Team}`;
+  document.getElementById("modalDept").textContent = `Department: ${employee.Department}`;
   document.getElementById("modalEmail").textContent = `Email: ${employee.Email}`;
   document.getElementById("modalPhone").textContent = `Phone: ${employee.Phone}`;
   document.getElementById("modalPosition").textContent = `Position: ${employee.Position}`;
@@ -35,12 +34,11 @@ fetch(sheetURL)
     sorted.forEach((employee, index) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-    <td>${employee.Name}</td>
-    <td>${employee.Stack}</td>
-    <td>${employee.Resolution}</td>
-    <td>${employee.CSS}</td>
-    <td>${employee.DSAT}</td>
-    <td>${employee.Team}</td>
+        <td>${employee.Rank}</td>
+        <td>${employee.Name}</td>
+        <td>${employee.EmployeeID}</td>
+        <td>${employee.Department}</td>
+        <td>${employee.Score}</td>
       `;
       row.onclick = () => openModal(employee);
       row.style.opacity = 0;

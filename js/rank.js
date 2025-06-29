@@ -28,73 +28,62 @@ fetch(sheetURL)
   .then(response => response.json())
   .then(data => {
     allData = data;
+    filterByMonth();
+  });
 
-    const topTen = [...data]
-      .sort((a, b) => parseFloat(b.Score) - parseFloat(a.Score))
-      .slice(0, 10);
+function filterByMonth() {
+  const selectedMonth = document.getElementById("monthFilter").value;
+  const filtered = selectedMonth
+    ? allData.filter(emp => emp.Month === selectedMonth)
+    : allData;
 
-    const tableBody = document.querySelector("#employeeTable tbody");
-    tableBody.innerHTML = "";
-    const stackContainer = document.getElementById("topperStack");
-stackContainer.innerHTML = "";
+  const topTen = [...filtered].sort((a, b) => parseFloat(b.Score) - parseFloat(a.Score)).slice(0, 10);
+  const top5 = topTen.slice(0, 5);
 
-const top5 = topTen;
+  const tableBody = document.querySelector("#employeeTable tbody");
+  const stackContainer = document.getElementById("topperStack");
+  tableBody.innerHTML = "";
+  stackContainer.innerHTML = "";
+
+  topTen.forEach(employee => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${employee.Name}</td>
+      <td>${employee.Stack}</td>
+      <td>${employee.Resolution}</td>
+      <td>${employee.CSS}</td>
+      <td>${employee.DSAT}</td>
+      <td>${employee.Team}</td>
+    `;
+    row.onclick = () => openModal(employee);
+    tableBody.appendChild(row);
+  });
+
+  function createCard(employee) {
+    const card = document.createElement("div");
+    card.className = "stack-card";
+    card.innerHTML = `
+      <div class="stack-title">Topper in ${getTopLabel(employee)}</div>
+      <img src="${employee.PhotoURL || 'https://via.placeholder.com/60'}" alt="${employee.Name}" />
+      <div>${employee.Name}</div>
+    `;
+    return card;
+  }
+
+  for (let i = 0; i < 2; i++) {
+    top5.forEach(emp => stackContainer.appendChild(createCard(emp)));
+  }
+}
 
 function getTopLabel(employee) {
-  const values = {
+  const scores = {
     Stack: parseFloat(employee.Stack),
     Resolution: parseFloat(employee.Resolution),
     CSS: parseFloat(employee.CSS),
     DSAT: parseFloat(employee.DSAT)
   };
-
-  const topMetric = Object.keys(values).reduce((a, b) => values[a] > values[b] ? a : b);
-  return `Topper in ${topMetric}`;
+  return Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
 }
-
-// Add original 5 cards
-top5.forEach(employee => {
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td>${employee.Name}</td>
-    <td>${employee.Stack}</td>
-    <td>${employee.Resolution}</td>
-    <td>${employee.CSS}</td>
-    <td>${employee.DSAT}</td>
-    <td>${employee.Team}</td>
-  `;
-  row.onclick = () => openModal(employee);
-  row.style.opacity = 0;
-  setTimeout(() => {
-    row.style.opacity = 1;
-    row.style.transition = 'opacity 0.6s ease';
-  }, 100);
-  tableBody.appendChild(row);
-
-  const card = document.createElement("div");
-  card.className = "stack-card";
-  card.innerHTML = `
-    <div class="stack-title">${getTopLabel(employee)}</div>
-    <img src="${employee.PhotoURL || 'https://via.placeholder.com/60'}" alt="${employee.Name}" />
-    <div>${employee.Name}</div>
-  `;
-  stackContainer.appendChild(card);
-});
-
-// Clone same 5 again for loop
-top5.forEach(employee => {
-  const card = document.createElement("div");
-  card.className = "stack-card";
-  card.innerHTML = `
-    <div class="stack-title">${getTopLabel(employee)}</div>
-    <img src="${employee.PhotoURL || 'https://via.placeholder.com/60'}" alt="${employee.Name}" />
-    <div>${employee.Name}</div>
-  `;
-  stackContainer.appendChild(card);
-});
-
-  })
-  .catch(err => console.error("Error:", err));
 
 document.getElementById("searchInput").addEventListener("keyup", function (e) {
   if (e.key === "Enter") searchEmployee();
