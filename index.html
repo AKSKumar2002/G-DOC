@@ -20,48 +20,71 @@
       flex-direction: column;
       font-family: 'Poppins', sans-serif;
       color: white;
+      overflow: hidden;
     }
 
     .logo {
       font-size: 2rem;
-      font-weight: 1000;
-      color: #2468fb;
-      margin-bottom: 20px;
+      font-weight: 600;
+      color: #078fff;
+      margin-bottom: 30px;
       animation: fadeLogo 1.5s ease-in-out;
+      text-decoration: none;
+    }
+
+    .logo:hover {
+      color: #24a5fb;
     }
 
     .spinner {
       width: 60px;
       height: 60px;
-      border: 5px solid rgba(255,255,255,0.2);
-      border-top: 6px solid #0585fd;
+      border: 6px solid rgba(255,255,255,0.2);
+      border-top: 6px solid #078fff;
       border-radius: 50%;
       animation: spin 1.2s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    .powered-by {
+      font-size: 1rem;
+      color: #000000cc;
+      margin-top: 10px;
+      opacity: 0;
+      filter: blur(10px);
+      transform: scale(0.5);
+      animation: revealMagic 1.4s ease-out 1.5s forwards;
+      white-space: nowrap;
     }
 
     @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
+      to { transform: rotate(360deg); }
     }
 
     @keyframes fadeLogo {
-      0% { opacity: 0; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes revealMagic {
+      to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px);
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- <div class="logo">🌐 G-DOC Loading...</div> -->
+  <!-- <a href="index.html" class="logo">🌐 G-DOC</a> -->
   <img src="img/Clogo.png" alt="Logo" style="width: 120px; margin-bottom: 20px;" />
-
   <div class="spinner"></div>
+  <div class="powered-by">Powered by Mr-aks</div>
 
   <script>
-    // Redirect after 5 seconds
     setTimeout(() => {
-      window.location.href = "top.html"; // Change to associate.html or any other destination
+      window.location.href = "top.html"; // Or associate.html, etc.
     }, 5000);
   </script>
 
