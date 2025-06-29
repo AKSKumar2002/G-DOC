@@ -38,7 +38,7 @@ fetch(sheetURL)
     topTen.forEach((employee, index) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td>${employee.Rank}</td>
+        <td>${employee.Stack}</td>
         <td>${employee.Name}</td>
         <td>${employee.EmployeeID}</td>
         <td>${employee.Department}</td>
