@@ -13,14 +13,14 @@
 
   <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="logo">👥 Associates</div>
-    <div class="dropdown">
-      <button class="dropbtn">Select Role ▼</button>
-      <div class="dropdown-content">
-        <a href="index.html">Top 10 Overall</a>
-        <a href="manager.html">Managers</a>
-        <a href="hr.html">HR</a>
-        <a href="admember.html">AD Members</a>
+    <a href="index.html" class="logo">🌐 G-DOC</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn">Select Role ▼</button>
+      <div class="nav-dropdown-content">
+        <a href="associate.html">Associates</a>
+        <a href="mm.html">Managers</a>
+        <a href="mm.html">HR</a>
+        <a href="mm.html">AD Members</a>
       </div>
     </div>
   </nav>
@@ -32,18 +32,38 @@
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Search by Employee ID..." />
       <button onclick="searchEmployee()">Search</button>
+      <select id="monthFilter" onchange="filterByMonth()" class="month-selector">
+        <option value="">📅 Select Month</option>
+        <option>January</option>
+        <option>February</option>
+        <option>March</option>
+        <option>April</option>
+        <option>May</option>
+        <option>June</option>
+        <option>July</option>
+        <option>August</option>
+        <option>September</option>
+        <option>October</option>
+        <option>November</option>
+        <option>December</option>
+      </select>
     </div>
+
+    <section class="stack-scroller" data-aos="fade-up">
+      <h2 class="stack-heading">🏅 Topper's Stack</h2>
+      <div class="stack-cards" id="topperStack"></div>
+    </section>
 
     <div class="table-wrapper">
       <table id="employeeTable">
         <thead>
           <tr>
-            <th>👤 Name</th>
-            <th>Stack</th>
-            <th>Resolution</th>
-            <th>CSS</th>
-            <th>DSAT</th>
-            
+              <th>👤 Name</th>
+              <th>Stack</th>
+              <th>Resolution</th>
+              <th>CSS</th>
+              <th>DSAT</th>
+              <th>Team</th>
             <!-- <th>Rank</th>
             <th>👤 Name</th>
             <th>🆔 ID</th>
@@ -62,10 +82,11 @@
       <span class="close" onclick="closeModal()">&times;</span>
       <img id="modalPhoto" src="" class="profile-photo" />
       <h2 id="modalName">Employee Name</h2>
-      <p id="modalDept">Department</p>
-      <p id="modalEmail">Email</p>
-      <p id="modalPhone">Phone</p>
+      <p id="modalEmployeeID">EmployeeID</p>
+      <p id="modalDept">Team</p>
       <p id="modalPosition">Position</p>
+      <p id="modalPhone">Phone</p>
+      <p id="modalEmail">Email</p>
     </div>
   </div>
 

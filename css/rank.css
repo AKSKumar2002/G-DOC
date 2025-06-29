@@ -94,13 +94,12 @@ a { color: inherit; text-decoration: none; }
 
 h1 {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #fbbf24;
 }
 
 .subheading {
   text-align: center;
-  font-size: 0.8rem;
   color: #cbd5e1;
   margin-bottom: 20px;
 }
