@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>G-DOC Dashboard</title>
+  <link rel="stylesheet" href="/css/rank.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <div class="dashboard" data-aos="fade-up">
+    <h1>🏆 Top 5 Employees</h1>
+    <p class="subheading">Live rankings from Google Sheets</p>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search by Employee ID..." />
+      <button onclick="searchEmployee()">Search</button>
+    </div>
+
+    <table id="employeeTable">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>👤 Name</th>
+          <th>🆔 ID</th>
+          <th>🗂️ Department</th>
+          <th>⭐ Score</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Popup Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content" data-aos="zoom-in">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalPhoto" src="" class="profile-photo" />
+      <h2 id="modalName">Employee Name</h2>
+      <p id="modalDept">Department</p>
+      <p id="modalEmail">Email</p>
+      <p id="modalPhone">Phone</p>
+      <p id="modalPosition">Position</p>
+      <button id="profileBtn">Show Full Profile</button>
+    </div>
+  </div>
+
+  <script src="/js/rank.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>
+
+
