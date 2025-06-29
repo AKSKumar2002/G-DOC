@@ -38,11 +38,12 @@ fetch(sheetURL)
     topTen.forEach((employee, index) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td>${employee.Stack}</td>
         <td>${employee.Name}</td>
-        <td>${employee.EmployeeID}</td>
+        <td>${employee.Stack}</td>
+        <td>${employee.Resolution}</td>
+        <td>${employee.CSS}</td>
+        <td>${employee.DSAT}</td>
         <td>${employee.Department}</td>
-        <td>${employee.Score}</td>
       `;
       row.onclick = () => openModal(employee);
       row.style.opacity = 0;
