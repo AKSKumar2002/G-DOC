@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,3 +55,61 @@
   </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>G-DOC Dashboard</title>
+  <link rel="stylesheet" href="/css/rank.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <div class="dashboard" data-aos="fade-up">
+    <h1>🏆 G-DOC Employee Ranking</h1>
+    <p class="subheading">Real-time performance overview fetched from G-DOC Team</p>
+
+    <table id="employeeTable">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>👤 Name</th>
+          <th>🗂️ Department</th>
+          <th>⭐ Score</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Popup Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content" data-aos="zoom-in">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalName">Employee Name</h2>
+      <p id="modalDept">Department: -</p>
+      <div class="meter-container">
+        <p>Performance Score</p>
+        <div class="meter">
+          <div class="meter-fill" id="meterFill"></div>
+        </div>
+        <span id="modalScore">0</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/rank.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>
+>>>>>>> 6bb48db (First commit)
