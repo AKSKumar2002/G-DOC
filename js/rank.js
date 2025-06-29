@@ -28,22 +28,25 @@ fetch(sheetURL)
   .then(response => response.json())
   .then(data => {
     allData = data;
-    filterByMonth();
+    filterByMonth(); // initial render
   });
 
 function filterByMonth() {
   const selectedMonth = document.getElementById("monthFilter").value;
-  const filtered = selectedMonth
-    ? allData.filter(emp => emp.Month === selectedMonth)
-    : allData;
-
-  const topTen = [...filtered].sort((a, b) => parseFloat(b.Score) - parseFloat(a.Score)).slice(0, 10);
-  const top5 = topTen.slice(0, 5);
+  const selectedTeam = document.getElementById("teamFilter").value;
 
   const tableBody = document.querySelector("#employeeTable tbody");
   const stackContainer = document.getElementById("topperStack");
   tableBody.innerHTML = "";
   stackContainer.innerHTML = "";
+
+  const filtered = allData.filter(emp =>
+    (!selectedMonth || emp.Month === selectedMonth) &&
+    (!selectedTeam || emp.Team.toLowerCase() === selectedTeam.toLowerCase())
+  );
+
+  const topTen = [...filtered].sort((a, b) => parseFloat(b.Score) - parseFloat(a.Score)).slice(0, 10);
+  const top5 = topTen.slice(0, 5);
 
   topTen.forEach(employee => {
     const row = document.createElement("tr");
@@ -73,6 +76,10 @@ function filterByMonth() {
   for (let i = 0; i < 2; i++) {
     top5.forEach(emp => stackContainer.appendChild(createCard(emp)));
   }
+}
+
+function filterByTeam() {
+  filterByMonth(); // same handler for both filters
 }
 
 function getTopLabel(employee) {
