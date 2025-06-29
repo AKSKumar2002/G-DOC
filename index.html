@@ -11,36 +11,46 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #ffffff, #ffffff);
-      height: 100vh;
+      color: white;
+    }
+
+    body {
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .container {
+      text-align: center;
+      display: flex;
       flex-direction: column;
-      font-family: 'Poppins', sans-serif;
-      color: white;
-      overflow: hidden;
+      align-items: center;
+      justify-content: center;
     }
 
     .logo {
       font-size: 2rem;
       font-weight: 600;
-      color: #078fff;
+      color: #009cf7;
       margin-bottom: 30px;
       animation: fadeLogo 1.5s ease-in-out;
       text-decoration: none;
     }
 
     .logo:hover {
-      color: #24a5fb;
+      color: #009cf7;
     }
 
     .spinner {
       width: 60px;
       height: 60px;
       border: 6px solid rgba(255,255,255,0.2);
-      border-top: 6px solid #078fff;
+      border-top: 6px solid #009cf7;
       border-radius: 50%;
       animation: spin 1.2s linear infinite;
       margin-bottom: 20px;
@@ -73,18 +83,35 @@
         filter: blur(0px);
       }
     }
+
+    /* Mobile Responsive Tweaks */
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.6rem;
+      }
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border-width: 5px;
+      }
+      .powered-by {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- <a href="index.html" class="logo">🌐 G-DOC</a> -->
-  <img src="img/Clogo.png" alt="Logo" style="width: 120px; margin-bottom: 20px;" />
-  <div class="spinner"></div>
-  <div class="powered-by">Powered by Mr-aks</div>
+  <div class="container">
+    <!-- <a href="index.html" class="logo">🌐 G-DOC</a> -->
+    <img src="img/Clogo.png" alt="Logo" style="width: 120px; margin-bottom: 20px;" />
+    <div class="spinner"></div>
+    <div class="powered-by">powered by mraks</div>
+  </div>
 
   <script>
     setTimeout(() => {
-      window.location.href = "top.html"; // Or associate.html, etc.
+      window.location.href = "top.html"; // Change to associate.html if needed
     }, 5000);
   </script>
 
