@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>G-DOC Rankings</title>
+  <link rel="stylesheet" href="/css/rank.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo no-hover">🌐 G-DOC</a>
+    <div class="dropdown">
+      <button class="dropbtn">Select Role ▼</button>
+      <div class="dropdown-content">
+        <a href="associate.html">Associates</a>
+        <a href="manager.html">Managers</a>
+        <a href="hr.html">HR</a>
+        <a href="admember.html">AD Members</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="dashboard" data-aos="fade-up">
+    <h1>🏆 G-DOC Achievers</h1>
+    <p class="subheading">Live performance rankings synced with G-DOC Team</p>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search by Employee ID..." />
+      <button onclick="searchEmployee()">Search</button>
+    </div>
+
+    <div class="table-wrapper">
+      <table id="employeeTable">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Department</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content" data-aos="zoom-in">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalPhoto" src="" class="profile-photo" />
+      <h2 id="modalName">Employee Name</h2>
+      <p id="modalDept">Department</p>
+      <p id="modalEmail">Email</p>
+      <p id="modalPhone">Phone</p>
+      <p id="modalPosition">Position</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="/js/rank.js"></script>
+  <script>AOS.init({ duration: 1000, once: true });</script>
+</body>
+</html>

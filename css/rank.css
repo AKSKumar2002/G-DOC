@@ -44,12 +44,27 @@ body {
   font-weight: 600;
 }
 
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 5px;
+  animation: fadeLogo 1.5s ease-in-out;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.logo.no-hover:hover {
+  color: #fbbf24;
+}
+
+
 .dropdown {
   position: relative;
 }
 
 .dropbtn {
-  background: #3b82f6;
+  background: #3b8cf6;
   color: #fff;
   padding: 10px 16px;
   border: none;
