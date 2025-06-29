@@ -34,25 +34,64 @@ fetch(sheetURL)
 
     const tableBody = document.querySelector("#employeeTable tbody");
     tableBody.innerHTML = "";
+    const stackContainer = document.getElementById("topperStack");
+stackContainer.innerHTML = "";
 
-    topTen.forEach((employee, index) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${employee.Name}</td>
-        <td>${employee.Stack}</td>
-        <td>${employee.Resolution}</td>
-        <td>${employee.CSS}</td>
-        <td>${employee.DSAT}</td>
-        <td>${employee.Department}</td>
-      `;
-      row.onclick = () => openModal(employee);
-      row.style.opacity = 0;
-      setTimeout(() => {
-        row.style.opacity = 1;
-        row.style.transition = 'opacity 0.6s ease';
-      }, index * 100);
-      tableBody.appendChild(row);
-    });
+const top5 = topTen;
+
+function getTopLabel(employee) {
+  const values = {
+    Stack: parseFloat(employee.Stack),
+    Resolution: parseFloat(employee.Resolution),
+    CSS: parseFloat(employee.CSS),
+    DSAT: parseFloat(employee.DSAT)
+  };
+
+  const topMetric = Object.keys(values).reduce((a, b) => values[a] > values[b] ? a : b);
+  return `Topper in ${topMetric}`;
+}
+
+// Add original 5 cards
+top5.forEach(employee => {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${employee.Name}</td>
+    <td>${employee.Stack}</td>
+    <td>${employee.Resolution}</td>
+    <td>${employee.CSS}</td>
+    <td>${employee.DSAT}</td>
+    <td>${employee.Department}</td>
+  `;
+  row.onclick = () => openModal(employee);
+  row.style.opacity = 0;
+  setTimeout(() => {
+    row.style.opacity = 1;
+    row.style.transition = 'opacity 0.6s ease';
+  }, 100);
+  tableBody.appendChild(row);
+
+  const card = document.createElement("div");
+  card.className = "stack-card";
+  card.innerHTML = `
+    <div class="stack-title">${getTopLabel(employee)}</div>
+    <img src="${employee.PhotoURL || 'https://via.placeholder.com/60'}" alt="${employee.Name}" />
+    <div>${employee.Name}</div>
+  `;
+  stackContainer.appendChild(card);
+});
+
+// Clone same 5 again for loop
+top5.forEach(employee => {
+  const card = document.createElement("div");
+  card.className = "stack-card";
+  card.innerHTML = `
+    <div class="stack-title">${getTopLabel(employee)}</div>
+    <img src="${employee.PhotoURL || 'https://via.placeholder.com/60'}" alt="${employee.Name}" />
+    <div>${employee.Name}</div>
+  `;
+  stackContainer.appendChild(card);
+});
+
   })
   .catch(err => console.error("Error:", err));
 

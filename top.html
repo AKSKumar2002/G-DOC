@@ -17,9 +17,9 @@
       <button class="dropbtn">Select Role ▼</button>
       <div class="dropdown-content">
         <a href="associate.html">Associates</a>
-        <a href="manager.html">Managers</a>
-        <a href="hr.html">HR</a>
-        <a href="admember.html">AD Members</a>
+        <a href="/mm.html">Managers</a>
+        <a href="/mm.html">HR</a>
+        <a href="/mm.html">AD Members</a>
       </div>
     </div>
   </nav>
@@ -31,6 +31,12 @@
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Search by Employee ID..." />
       <button onclick="searchEmployee()">Search</button>
+    </div>
+
+    <!-- Topper Stack Section -->
+    <div class="stack-scroller" data-aos="fade-up">
+      <h2 class="stack-heading">Topper Stack</h2>
+      <div class="stack-cards" id="topperStack"></div>
     </div>
 
     <div class="table-wrapper">
@@ -65,5 +71,10 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="/js/rank.js"></script>
   <script>AOS.init({ duration: 1000, once: true });</script>
+
+  <footer class="footer">
+    © Copyrights by AjithKumar S
+  </footer>
+  
 </body>
 </html>
