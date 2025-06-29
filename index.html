@@ -1,134 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>G-DOC Rankings</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>G-DOC Dashboard</title>
+  <link rel="stylesheet" href="/css/rank.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background-glow"></div>
 
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-  </head>
-  <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="dashboard.html">Ranking</a></li>
-        </ul>
-      </nav>
-    </header>
-    <canvas id="bg"></canvas>
-    <div class="content">
-      <h1>G-DOC Ranking</h1>
-      <h2 id="typing-text"></h2>
+  <div class="dashboard" data-aos="fade-up">
+    <h1>🏆 Top 5 Employees</h1>
+    <p class="subheading">Live rankings from Google Sheets</p>
 
-      <p>
-        Explore the leading performers ranked by innovation, security,
-        and adoption.
-      </p>
-      <p>
-        We Offer you a chatbot that helps you take the right
-        decisions
-      </p>
-      <div class="chatbot-button">Chat with Our Bot</div>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search by Employee ID..." />
+      <button onclick="searchEmployee()">Search</button>
     </div>
-    <section id="examples">
-      <h2>See Examples</h2>
-      <div class="scroll-container">
-        <!-- Left Arrow -->
 
-        <div class="card">
-          <div class="card-header">
-            <h3>Joel</h3>
-            <div class="ranking">Rank: 4.5/5</div>
-          </div>
-          <img src="img/5ire.jpg" alt="Blockchain Image" class="card-image" />
-          <div class="card-footer">
-            <a
-              href="https://www.blockchainwebsite.com"
-              class="website-icon"
-              target="_blank"
-            >
-              <i class="fas fa-link"></i>
-              <!-- Font Awesome link icon -->
-            </a>
-            <a href="explorer.html">
-              <button class="check-details-btn">Check Details</button>
-            </a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header">
-            <h3>Mercy</h3>
-            <div class="ranking">Rank: 4.5/5</div>
-          </div>
-          <img src="img/5ire.jpg" alt="Blockchain Image" class="card-image" />
-          <div class="card-footer">
-            <a
-              href="https://www.blockchainwebsite.com"
-              class="website-icon"
-              target="_blank"
-            >
-              <i class="fas fa-link"></i>
-              <!-- Font Awesome link icon -->
-            </a>
-            <button class="check-details-btn">Check Details</button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header">
-            <h3>Ajith Kumar S</h3>
-            <div class="ranking">Rank: 4.5/5</div>
-          </div>
-          <img src="img/5ire.jpg" alt="Blockchain Image" class="card-image" />
-          <div class="card-footer">
-            <a
-              href="https://www.blockchainwebsite.com"
-              class="website-icon"
-              target="_blank"
-            >
-              <i class="fas fa-link"></i>
-              <!-- Font Awesome link icon -->
-            </a>
-            <button class="check-details-btn">Check Details</button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header">
-            <h3>Bernice</h3>
-            <div class="ranking">Rank: 4.5/5</div>
-          </div>
-          <img src="img/5ire.jpg" alt="Blockchain Image" class="card-image" />
-          <div class="card-footer">
-            <a
-              href="https://www.blockchainwebsite.com"
-              class="website-icon"
-              target="_blank"
-            >
-              <i class="fas fa-link"></i>
-              <!-- Font Awesome link icon -->
-            </a>
-            <button class="check-details-btn">Check Details</button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <footer>
-      <p>G-DOC Team | Contact | Address</p>
-    </footer>
-    <div class="chat-button" onclick="toggleChat()">
-      <div class="chat-typing">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+    <table id="employeeTable">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>👤 Name</th>
+          <th>🆔 ID</th>
+          <th>🗂️ Department</th>
+          <th>⭐ Score</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Popup Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content" data-aos="zoom-in">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalPhoto" src="" class="profile-photo" />
+      <h2 id="modalName">Employee Name</h2>
+      <p id="modalDept">Department</p>
+      <p id="modalEmail">Email</p>
+      <p id="modalPhone">Phone</p>
+      <p id="modalPosition">Position</p>
+      <button id="profileBtn">Show Full Profile</button>
     </div>
-    <script src="js/script.js"></script>
-  </body>
+  </div>
+
+  <script src="/js/rank.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
 </html>
