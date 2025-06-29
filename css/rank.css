@@ -10,7 +10,6 @@ body {
   color: white;
   min-height: 100vh;
   padding: 20px;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -61,6 +60,7 @@ h1 {
   gap: 10px;
   justify-content: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .search-container input {
@@ -98,6 +98,7 @@ th, td {
   padding: 15px;
   text-align: left;
   color: #f1f5f9;
+  word-wrap: break-word;
 }
 
 th {
@@ -190,26 +191,56 @@ tr:hover {
   background-color: #0ea5e9;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsiveness */
+@media (max-width: 1024px) {
   .dashboard {
-    padding: 20px 15px;
+    padding: 25px 15px;
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 
   .subheading {
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .subheading {
+    font-size: 0.8rem;
+  }
+
+  .search-container input {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  .search-container button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  table {
     font-size: 0.85rem;
   }
 
   th, td {
-    font-size: 0.9rem;
-    padding: 10px;
+    padding: 8px;
   }
 
   .modal-content {
-    padding: 20px 15px;
+    width: 100%;
+    max-width: 90vw;
+    padding: 15px;
   }
 }
