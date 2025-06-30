@@ -123,11 +123,13 @@ a {
 
 h1 {
   text-align: center;
+  font-size: 1.3rem;
   color: #fbbf24;
 }
 
 .subheading {
   text-align: center;
+  font-size: 0.8rem;
   color: #cbd5e1;
   margin-bottom: 1rem;
 }
