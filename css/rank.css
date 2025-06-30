@@ -135,8 +135,8 @@ h1 {
 
 .search-container button {
   padding: 10px 16px;
-  background: #22d3ee;
-  color: black;
+  background: #1e293b;
+  color: rgb(255, 255, 255);
   border-radius: 8px;
   font-weight: bold;
   border: none;
