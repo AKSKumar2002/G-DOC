@@ -55,6 +55,7 @@ a {
 .team-selector,
 .month-selector {
   padding: 10px 15px;
+  font-size: 0.9rem;
   border-radius: 8px;
   border: none;
   font-weight: bold;
@@ -130,7 +131,7 @@ h1 {
   padding: 10px;
   border-radius: 8px;
   border: none;
-  width: 240px;
+  width: 200px;
 }
 
 .search-container button {
