@@ -385,3 +385,47 @@ body.light-mode .navbar-container {
     padding: 8px;
   }
 }
+
+@media (max-width: 768px) {
+  /* Smaller padding and font for navbar items */
+  .nav-dropbtn,
+  .team-selector,
+  .month-selector,
+  .contact-link {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .hamburger {
+    font-size: 1.3rem;
+    padding: 4px 8px;
+  }
+
+  .navbar {
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-dropbtn,
+  .team-selector,
+  .month-selector,
+  .contact-link {
+    width: 100%;
+  }
+
+  .search-container input,
+  .search-container button {
+    width: 100%;
+  }
+}
+
