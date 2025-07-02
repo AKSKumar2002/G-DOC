@@ -322,3 +322,66 @@ body.light-mode .navbar-container {
 .navbar {
   margin: 0;
 }
+
+/* 📱 Mobile menu toggle */
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-actions {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .nav-actions.open {
+    display: flex;
+  }
+
+  .nav-dropbtn, .team-selector, .month-selector, .contact-link {
+    width: 100%;
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-container input {
+    width: 100%;
+  }
+
+  .search-container button {
+    width: 100%;
+  }
+
+  .stack-cards {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    animation: none;
+  }
+
+  .stack-card {
+    min-width: 140px;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+}
